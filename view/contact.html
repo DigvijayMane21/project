@@ -124,7 +124,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="wow fadeInUp" data-wow-delay="0.2s">
-                            <form>
+                            <form id="userform" action="" method="post">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-floating">
@@ -141,15 +141,16 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                            <label for="subject">Subject</label>
+                                            <input type="number" class="form-control" id="Contact_number"
+                                                placeholder="Enter contact number">
+                                            <label for="number">Contact</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
                                             <textarea class="form-control" placeholder="Leave a message here"
-                                                id="message" style="height: 150px"></textarea>
-                                            <label for="message">Message</label>
+                                                id="Address" style="height: 150px"></textarea>
+                                            <label for="Address">Address</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -252,6 +253,33 @@
 
     <!-- Template Javascript -->
     <script src="../static/js/main.js"></script>
+    <!-- <script>
+        document.getElementById('userform').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                Contact_number: formData.get('Contact_number'),
+                Address: formData.get('Address')
+            };
+
+            try {
+                const response = await fetch('/addUser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                console.log(result);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script> -->
 </body>
 
 </html>
