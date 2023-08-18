@@ -56,7 +56,7 @@ app.get("/testimonial", (req, res) => {
 // app.post("/about", (req, res) => {
 //     res.send("This is my post requist first about of express app")
 // });
-
+/*
 app.post('/contact', function (req, res) {
     var name = req.body.name;
     var email = req.body.email;
@@ -71,8 +71,24 @@ app.post('/contact', function (req, res) {
             res.send('Customer have been registered successfully' + result.insertId);
         })
     })
-})
+});
+*/
 
+app.post('/contact', (req, res) => {
+    const { Name, Email, Contact_number, Address } = req.body;
+
+    const sql = 'INSERT INTO customer (name, email,Contact_number,Address) VALUES (?, ?,?,?)';
+    const values = [Name, Email, Contact_number, Address];
+
+    connection.query(sql, values, (error, results) => {
+        if (error) {
+            console.error('Error inserting data:', error);
+            return results;
+        }
+        return results;
+        //res.json({ message: 'Data inserted successfully' });
+    });
+});
 app.listen(port, () => {
     console.log(`this application started successfully on port ${port}`);
 });

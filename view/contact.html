@@ -128,13 +128,14 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                            <input type="text" class="form-control" name="Name" id="name"
+                                                placeholder="Your Name">
                                             <label for="name">Your Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="email" class="form-control" id="email"
+                                            <input type="email" class="form-control" id="email" name="Email"
                                                 placeholder="Your Email">
                                             <label for="email">Your Email</label>
                                         </div>
@@ -142,14 +143,14 @@
                                     <div class="col-12">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" id="Contact_number"
-                                                placeholder="Enter contact number">
+                                                name="Contact_number" placeholder="Enter contact number">
                                             <label for="number">Contact</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
                                             <textarea class="form-control" placeholder="Leave a message here"
-                                                id="Address" style="height: 150px"></textarea>
+                                                name="Address" id="Address" style="height: 150px"></textarea>
                                             <label for="Address">Address</label>
                                         </div>
                                     </div>
@@ -259,14 +260,14 @@
 
             const formData = new FormData(event.target);
             const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
+                name: formData.get('Name'),
+                email: formData.get('Email'),
                 Contact_number: formData.get('Contact_number'),
                 Address: formData.get('Address')
             };
 
             try {
-                const response = await fetch('/addUser', {
+                const response = await fetch('/contact', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
