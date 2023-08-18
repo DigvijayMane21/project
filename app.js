@@ -34,6 +34,9 @@ app.get("/service", (req, res) => {
 app.get("/team", (req, res) => {
     res.status(200).sendFile(path.join(__dirname, "view/team.html"));
 });
+app.get("/about", (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, "view/about.html"));
+});
 app.get("/testimonial", (req, res) => {
     res.status(200).sendFile(path.join(__dirname, "view/testimonial.html"));
 });
