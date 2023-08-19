@@ -1,8 +1,10 @@
 const { error } = require("console");
 const express = require("express");
 // const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+const bodyParser = require('body-parser')
 const mysql = require('mysql2');
-const path = require("path");
 const alert = require('alert')
 const app = express();
 const port = 80;
@@ -18,10 +20,16 @@ const connection = mysql.createConnection({
 
 // For using static files
 app.use("/static", express.static("static"));
-app.use(express.urlencoded());
-
-//set the templete engine as pug
-// app.set("view engine", "html");
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(cookieParser('secret'))
+app.use(session({ cookie: { maxAge: null } }))
+//flash message middleware
+app.use((req, res, next) => {
+    res.locals.message = req.session.message
+    delete req.session.message
+    next()
+})
 
 const handlebars = require('express3-handlebars').create()
 app.engine('handlebars', handlebars.engine)
@@ -32,31 +40,31 @@ app.set('view engine', 'handlebars')
 // app.set("view", path.join(__dirname, "view"));
 
 app.get("/", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "views/index.html"));
+    res.render('');
 });
 app.get("/index", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "views/index.html"));
+    res.render('index');
 });
 app.get("/booking", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "views/booking.html"));
+    res.render('booking');
 });
 app.get("/contact", (req, res) => {
     res.render('contact');
 });
 app.get("/menu", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "views/menu.html"));
+    res.render('menu');
 });
 app.get("/service", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "views/service.html"));
+    res.render('service');
 });
 app.get("/team", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "views/team.html"));
+    res.render('team');
 });
 app.get("/about", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "views/about.html"));
+    res.render('about');
 });
 app.get("/testimonial", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "views/testimonial.html"));
+    res.render('testimonial');
 });
 // app.get("/about", (req, res) => {
 //     res.send("This is my first about of express app")
@@ -95,7 +103,7 @@ app.post('/contact', (req, res) => {
         }
         alert("message is recieved successufully");
         // window.alert("message is recieved successufully");
-        // return res.status(200).sendFile(path.join(__dirname, "view/contact.html"));
+        // return re.render('ndow.alert("message is recieve');
         return res.redirect('/contact');
         //res.json({ message: 'Data inserted successfully' });
     });
