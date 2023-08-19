@@ -40,7 +40,7 @@ app.set('view engine', 'handlebars')
 // app.set("view", path.join(__dirname, "view"));
 
 app.get("/", (req, res) => {
-    res.render('');
+    res.render('index');
 });
 app.get("/index", (req, res) => {
     res.render('index');
