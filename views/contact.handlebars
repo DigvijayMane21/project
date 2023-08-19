@@ -32,6 +32,17 @@
 
     <!-- Template Stylesheet -->
     <link href="../static/css/style.css" rel="stylesheet">
+
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["Contact_number"].value;
+            if (x < 1000000000 || x > 10000000000) {
+                alert("Contact number should be 10 digit only");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 
 <body>
@@ -156,7 +167,8 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <input class="btn btn-primary w-100 py-3" type="submit">
+                                        <input class="btn btn-primary w-100 py-3" type="submit" value="Submit"
+                                            id="submitForm" name="Submit">
                                     </div>
                                 </div>
                             </form>
@@ -256,6 +268,12 @@
     <!-- Template Javascript -->
     <script src="../static/js/main.js"></script>
     <script src="../app.js"></script>
+    <script>
+        $("#submitForm").click(function () {
+            if (validateForm == true)
+                alert("The Form has been Submitted.");
+        });
+    </script>
     <!-- <script>
         document.getElementById('userform').addEventListener('submit', async function (event) {
             event.preventDefault();
