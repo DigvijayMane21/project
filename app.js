@@ -16,7 +16,6 @@ const connection = mysql.createConnection({
     database: 'project'
 });
 
-
 // For using static files
 app.use("/static", express.static("static"));
 app.use(express.urlencoded());
@@ -24,35 +23,40 @@ app.use(express.urlencoded());
 //set the templete engine as pug
 // app.set("view engine", "html");
 
+const handlebars = require('express3-handlebars').create()
+app.engine('handlebars', handlebars.engine)
+app.set('view engine', 'handlebars')
+
+
 //set view directory
-app.set("view", path.join(__dirname, "view"));
+// app.set("view", path.join(__dirname, "view"));
 
 app.get("/", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "view/index.html"));
+    res.status(200).sendFile(path.join(__dirname, "views/index.html"));
 });
 app.get("/index", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "view/index.html"));
+    res.status(200).sendFile(path.join(__dirname, "views/index.html"));
 });
 app.get("/booking", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "view/booking.html"));
+    res.status(200).sendFile(path.join(__dirname, "views/booking.html"));
 });
 app.get("/contact", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "view/contact.html"));
+    res.render('contact');
 });
 app.get("/menu", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "view/menu.html"));
+    res.status(200).sendFile(path.join(__dirname, "views/menu.html"));
 });
 app.get("/service", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "view/service.html"));
+    res.status(200).sendFile(path.join(__dirname, "views/service.html"));
 });
 app.get("/team", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "view/team.html"));
+    res.status(200).sendFile(path.join(__dirname, "views/team.html"));
 });
 app.get("/about", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "view/about.html"));
+    res.status(200).sendFile(path.join(__dirname, "views/about.html"));
 });
 app.get("/testimonial", (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, "view/testimonial.html"));
+    res.status(200).sendFile(path.join(__dirname, "views/testimonial.html"));
 });
 // app.get("/about", (req, res) => {
 //     res.send("This is my first about of express app")
