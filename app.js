@@ -1,9 +1,13 @@
 const { error } = require("console");
 const express = require("express");
+// const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const path = require("path");
+const alert = require('alert')
 const app = express();
 const port = 80;
+
+// app.use(bodyParser.json());
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -77,7 +81,7 @@ app.post('/contact', function (req, res) {
 app.post('/contact', (req, res) => {
     const { Name, Email, Contact_number, Address } = req.body;
 
-    const sql = 'INSERT INTO customer (name, email,Contact_number,Address) VALUES (?, ?,?,?)';
+    const sql = 'INSERT INTO customer (name, email,Contact_number,Address) VALUES (?,?,?,?)';
     const values = [Name, Email, Contact_number, Address];
 
     connection.query(sql, values, (error, results) => {
@@ -85,7 +89,10 @@ app.post('/contact', (req, res) => {
             console.error('Error inserting data:', error);
             return results;
         }
-        return results;
+        alert("message is recieved successufully");
+        // window.alert("message is recieved successufully");
+        // return res.status(200).sendFile(path.join(__dirname, "view/contact.html"));
+        return res.redirect('/contact');
         //res.json({ message: 'Data inserted successfully' });
     });
 });
