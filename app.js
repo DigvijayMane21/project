@@ -1,8 +1,8 @@
 const { error } = require("console");
 const express = require("express");
 // const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser')
-const session = require('express-session')
+// const cookieParser = require('cookie-parser')
+// const session = require('express-session')
 const bodyParser = require('body-parser')
 const mysql = require('mysql2');
 const alert = require('alert')
@@ -22,14 +22,14 @@ const connection = mysql.createConnection({
 app.use("/static", express.static("static"));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(cookieParser('secret'))
-app.use(session({ cookie: { maxAge: null } }))
-//flash message middleware
-app.use((req, res, next) => {
-    res.locals.message = req.session.message
-    delete req.session.message
-    next()
-})
+// app.use(cookieParser('secret'))
+// app.use(session({ cookie: { maxAge: null } }))
+// //flash message middleware
+// app.use((req, res, next) => {
+//     res.locals.message = req.session.message
+//     delete req.session.message
+//     next()
+// })
 
 const handlebars = require('express3-handlebars').create()
 app.engine('handlebars', handlebars.engine)
