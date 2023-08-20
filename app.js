@@ -101,11 +101,53 @@ app.post('/contact', (req, res) => {
             console.error('Error inserting data:', error);
             return results;
         }
-        alert("message is recieved successufully");
+        // alert("message is recieved successfully");
         // window.alert("message is recieved successufully");
         // return re.render('ndow.alert("message is recieve');
         return res.redirect('/contact');
         //res.json({ message: 'Data inserted successfully' });
+    });
+});
+app.post('/booking', (req, res) => {
+    const { Name, Email, Date, Number_of_people, Special_request } = req.body;
+
+    const sql = 'INSERT INTO booking (name, email, Date, Number_of_people, Special_request) VALUES (?,?,?,?,?)';
+    const values = [Name, Email, Date, Number_of_people, Special_request];
+
+    connection.query(sql, values, (error, results) => {
+        if (error) {
+            console.error('Error inserting data:', error);
+            return results;
+        }
+        return res.redirect('/contact');
+    });
+});
+app.post('/index', (req, res) => {
+    const { Name, Email, Date, Number_of_people, Special_request } = req.body;
+
+    const sql = 'INSERT INTO booking (name, email, Date, Number_of_people, Special_request) VALUES (?,?,?,?,?)';
+    const values = [Name, Email, Date, Number_of_people, Special_request];
+
+    connection.query(sql, values, (error, results) => {
+        if (error) {
+            console.error('Error inserting data:', error);
+            return results;
+        }
+        return res.redirect('/contact');
+    });
+});
+app.post('/', (req, res) => {
+    const { Name, Email, Date, Number_of_people, Special_request } = req.body;
+
+    const sql = 'INSERT INTO booking (name, email, Date, Number_of_people, Special_request) VALUES (?,?,?,?,?)';
+    const values = [Name, Email, Date, Number_of_people, Special_request];
+
+    connection.query(sql, values, (error, results) => {
+        if (error) {
+            console.error('Error inserting data:', error);
+            return results;
+        }
+        return res.redirect('/contact');
     });
 });
 app.listen(port, () => {

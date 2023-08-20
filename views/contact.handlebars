@@ -35,11 +35,12 @@
 
     <script>
         function validateForm() {
-            var x = document.forms["myForm"]["Contact_number"].value;
+            let x = document.forms["myForm"]["Contact_number"].value;
             if (x < 1000000000 || x > 10000000000) {
                 alert("Contact number should be 10 digit only");
                 return false;
             }
+            alert("form is submitted successfully")
             return true;
         }
     </script>
@@ -194,9 +195,14 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><a
+                                href="https://www.google.com/maps/place/Somwar+Peth,+Pune,+Maharashtra/@18.5225183,73.8472795,15z/data=!3m1!4b1!4m6!3m5!1s0x3bc2c05d9ed65c1d:0x8da1fdade44389c9!8m2!3d18.5214325!4d73.8676347!16s%2Fm%2F0118lk2v?entry=ttu">Somwar
+                                Peth, Pune, Maharashtra</a>
+                        </p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i><a
+                                href="https://mail.google.com/mail/u/2/#inbox?compose=new">flavourparadize@gmail.com</a>
+                        </p>
                         <div class="d-flex pt-2">
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
@@ -268,12 +274,15 @@
     <!-- Template Javascript -->
     <script src="../static/js/main.js"></script>
     <script src="../app.js"></script>
+    {{!--
     <script>
         $("#submitForm").click(function () {
-            if (validateForm == true)
+            let x = document.forms["myForm"]["Contact_number"].value;
+            console.log(x);
+            if (x > 1000000000 && x < 10000000000)
                 alert("The Form has been Submitted.");
         });
-    </script>
+    </script> --}}
     <!-- <script>
         document.getElementById('userform').addEventListener('submit', async function (event) {
             event.preventDefault();
