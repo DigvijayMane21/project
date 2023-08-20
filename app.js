@@ -119,7 +119,7 @@ app.post('/booking', (req, res) => {
             console.error('Error inserting data:', error);
             return results;
         }
-        return res.redirect('/contact');
+        return res.redirect('/booking');
     });
 });
 app.post('/index', (req, res) => {
@@ -133,7 +133,7 @@ app.post('/index', (req, res) => {
             console.error('Error inserting data:', error);
             return results;
         }
-        return res.redirect('/contact');
+        return res.redirect('/index');
     });
 });
 app.post('/', (req, res) => {
@@ -147,7 +147,7 @@ app.post('/', (req, res) => {
             console.error('Error inserting data:', error);
             return results;
         }
-        return res.redirect('/contact');
+        return res.redirect('/');
     });
 });
 app.listen(port, () => {
